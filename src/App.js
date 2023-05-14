@@ -7,7 +7,7 @@ import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Home, Layout } from "./components";
 import Profesor from './components/Profesor.jsx'
-import Recovery from "./pages/login-register/recoverpass.jsx"
+import Recovery from "./login-register/recoverpass.jsx"
 
 function App() {
   // const [currentForm, setCurrentForm] = useState('login')//useState('page') or useState('login')
