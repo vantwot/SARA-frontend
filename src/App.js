@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Home, Layout } from "./components";
-import Profesor from './components/Profesor.jsx'
 import Recovery from "./login-register/recoverpass.jsx"
 
 function App() {
