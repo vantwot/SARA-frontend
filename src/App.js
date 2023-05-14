@@ -6,12 +6,8 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Home, Layout } from "./components";
-<<<<<<< HEAD
 import Profesor from './components/Profesor.jsx'
-import Recovery from "./pages/login-register/recoverpass.jsx
-=======
 import Recovery from "./pages/login-register/recoverpass.jsx"
->>>>>>> parent of 83426209 (Merge branch 'main-frontend' into #42-conectarla-al-back)
 
 function App() {
   // const [currentForm, setCurrentForm] = useState('login')//useState('page') or useState('login')
