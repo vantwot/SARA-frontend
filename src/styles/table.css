@@ -57,3 +57,34 @@
     width: 18%;
     /* background-color: #00ffff; */
 }
+
+.nombre{
+    width: 63%;
+    /* background-color: #ff00ff; */
+    text-align: left;
+}
+
+.actualizar{
+    width: 20%;
+    /* background-color: #ff00ff; */
+    text-align: center;
+}
+
+.button {
+    background-color: #ffffff; /* Green */
+    border: 2px solid #ff0000;
+    color: rgb(0, 0, 0);
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 8px;
+    transition-duration: 300ms;
+  }
+
+.button:hover {
+    background-color: #ff0000;
+    color: white;
+  }
+/* ************************************** */
+

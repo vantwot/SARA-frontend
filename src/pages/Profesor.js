@@ -1,9 +1,9 @@
 import React from "react";
-import { Tabulado, Calendar } from "./";
+import { RegistroNotas, Calendar } from "../components";
 
 import "styles/home.css";
 
-const Home = () => {
+const Profesor = () => {
     return (
         // <div class="wrap">
         //     <div class="rights top">XD</div>
@@ -20,11 +20,7 @@ const Home = () => {
                     Programa: Ingeniería de Sistemas (3743)<br></br>
                     Resolución: 047</span>
             </div>
-
-
-            {/* </div> */}
-
-
+            
             <div className="home-right">
                 <span className="home-description">
                     Tu horario
@@ -33,16 +29,11 @@ const Home = () => {
             </div>
 
             <div className="home-left">
-                <div>
-                    <span className="home-description">Semestre actual: Mar 2023 - Dic 2025</span>
-                    <div>
-                        <Tabulado />
-                    </div>
-
-                </div>
+                <RegistroNotas />
             </div>
+
         </div>
     );
 };
 
-export default Home;
+export default Profesor;
