@@ -1,12 +1,18 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Tabulado, Calendar } from "../components";
+import jwt_decode from "jwt-decode";
 
 import "styles/home.css";
 
 const Home = () => {
 
-    const userInfo = useLocation().state;
+    var userInfo = useLocation().state;
+    console.log("userInfo: ",userInfo)
+    if (userInfo == null){
+        userInfo = jwt_decode(localStorage.getItem('jwt'))
+    }
+    console.log("userInfo: ",userInfo)
 
     //console.log("Home");
     //console.log(userInfo);

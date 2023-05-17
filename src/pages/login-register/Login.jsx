@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./logreg.css";
 import univalle from "./Univalle.svg.png";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import { AuthContext } from "utils/AuthContext";
 
 const Login = (props) => {
+  const {value,setValue} = useContext(AuthContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -46,6 +47,10 @@ const handleSubmit = async (e) => {
       username: decoded.username,
       user_id: decoded.user_id,
     };
+
+    const jwt_access = data['access']
+    localStorage.setItem('jwt',jwt_access)
+    setValue(jwt_access)
     
     navigate("home/", {state:userInfo});
 
