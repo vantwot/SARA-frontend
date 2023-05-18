@@ -15,7 +15,7 @@ const Home = () => {
     const courses = getCourses(tabulado.courses);
 
     const appointments = getDates(courses);
-    console.log(appointments);
+   // console.log(appointments);
 
     return (
 
@@ -74,7 +74,7 @@ const getDates = (courses) => {
     }
 
     for (let i = 0; i < courses.length; i++) {
-        console.log(courses[i]);
+        //console.log(courses[i]);
         course = courses[i];
         for (let j = 0; j < course.horario.date.length; j++) {
             startHour = course.horario.time[j].split("-")[0];

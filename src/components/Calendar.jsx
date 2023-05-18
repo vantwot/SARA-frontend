@@ -56,7 +56,7 @@ import {
 
 const Calendar = ( {appointments} ) => {
 
-    console.log(appointments)
+    //console.log(appointments)
 
     return (
       <Paper>

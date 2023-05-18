@@ -76,10 +76,10 @@
     justify-content: center;
 }
 
-
-
-
-
+.select {
+    padding: 1rem 1rem;
+    margin-bottom: 8px;
+}
 
 
 .wrap {width: 85%; margin: auto; overflow: hidden;}
@@ -87,3 +87,4 @@
 .rights {float: left; height: 250px; margin-bottom: 10px; width: 49%;}
 .rights.top {background: green;}
 .rights.bot {background: red;}
+
