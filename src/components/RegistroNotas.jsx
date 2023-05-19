@@ -18,7 +18,7 @@ const RegistroNotas = () => {
 
   useEffect(() => {
     if (asignaturaSeleccionada) {
-      const dynamicUrl = `https://saraendpoint.azurewebsites.net/Asignatura/${Number(
+      const dynamicUrl = `http://localhost:4000/Asignatura/${Number(
         asignaturaSeleccionada
       )}/Students/`;
       fetch(dynamicUrl)
@@ -53,7 +53,7 @@ const RegistroNotas = () => {
 
   const handleCloseModal = () => {
     // refrescar estudiantes
-    const dynamicUrl = `https://saraendpoint.azurewebsites.net/Asignatura/${Number(
+    const dynamicUrl = `http://localhost:4000/Asignatura/${Number(
       asignaturaSeleccionada
     )}/Students/`;
     fetch(dynamicUrl)
@@ -75,7 +75,7 @@ const RegistroNotas = () => {
 
       // console.log(newErrors);
     } else {
-      const dynamicUrl = `https://saraendpoint.azurewebsites.net/Tabular/UpdateGrade/`;
+      const dynamicUrl = `http://localhost:4000/Tabular/UpdateGrade/`;
       fetch(dynamicUrl, {
         method: "PUT",
         headers: {

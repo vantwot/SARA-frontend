@@ -10,7 +10,7 @@ import { getCourses } from "../../utils/extras";
 const Matricula = () => {
 
     const [courses, setCourses] = useState([]);
-    const endPoint = "https://saraendpoint.azurewebsites.net/Asignatura/None/Search";
+    const endPoint = "http://localhost:4000/Asignatura/None/Search";
 
     useEffect(() => {
         console.log("useEffect");

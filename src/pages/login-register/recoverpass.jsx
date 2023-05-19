@@ -33,7 +33,7 @@ const Recovery = (props) => {
       };
       console.log(requestOptions);
       let data = await fetch(
-        `https://saraendpoint.azurewebsites.net/user/change_password/`,
+        `http://localhost:4000/user/change_password/`,
         requestOptions
       );
       let dataJson = await data.json();
