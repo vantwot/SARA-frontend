@@ -19,6 +19,7 @@ const Login = (props) => {
       return;
     }
     try {
+      setText("Ingresando");
       const requestOptions = {
         mode: "cors",
         method: "POST",
@@ -51,12 +52,11 @@ const Login = (props) => {
         role: decoded.role,
         asignaturas: decoded.asignaturas,
       };
-      console.log(decoded);
 
       // switch que redirecciona dependiendo del rol del usuario
       switch (userInfo.role) {
         case "estudiante":
-          navigate("home/", { state: userInfo });
+          navigate("estudiante/home/", { state: userInfo });
           break;
         case "profesor":
           navigate("profesor/", { state: userInfo });
@@ -162,25 +162,17 @@ const Login = (props) => {
                     </small>
                   </div>
                 </div>
-                <div className="input-group mb-3">
-                  <button
-                    className="btn btn-lg btn-danger w-100 fs-6"
-                    type="submit"
-                  >
-                    Iniciar
-                  </button>
-                </div>
-              </div>
+              </div >
               <div className="input-group mb-3">
                 <button className="btn btn-lg btn-danger w-100 fs-6" type="submit">
                   {text}
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
+            </div >
+          </div >
+        </div >
+      </form >
+    </div >
   );
 };
 

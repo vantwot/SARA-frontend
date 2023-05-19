@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const CoursesInfo = ({ courses }) => {
+
+    const [showCourses, setShowCourses] = useState([]);
+    const [searchData, setSearchData] = useState("");
+
+    useEffect(() => {
+        setShowCourses(courses);
+    }, [courses]);
+
+    const handleSearch = (e) => {
+        setSearchData(e.target.value);
+        let filteredCourses = courses.filter((course) => {
+            return removeAccents(course.name.toLowerCase()).includes(e.target.value.toLowerCase()) || course.code.toLowerCase().includes(e.target.value.toLowerCase());
+        });
+        setShowCourses(filteredCourses);
+    }
+
+    const removeAccents = (str) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    } 
+
     return (
         <div>
+            <label className="label-busqueda">Buscar un curso: </label>
+            <input
+                //pattern="[0-9]*"
+                value={searchData}
+                onChange={handleSearch}
+                id="search"
+                name="search"
+                className="input-busqueda"
+                placeholder="Ej. Cálculo, Deporte, 111038C ..."
+            />
 
-            {/* <thead className="table-header">
-                    <tr className="table-row">
-                        <th className="table-header codigo">Código</th>
-                        <th className="table-header grupo">Grupo</th>
-                        <th className="table-header asignatura">Asignatura</th>
-                        <th className="table-header nota">Nota</th>
-                        <th className="table-header creditos">Creditos</th>
-                    </tr>
-                </thead> */}
-
-            {courses.map((course, index) => (
+            <hr></hr>
+            {showCourses.length === 0 && <div className="no-courses">No se encontraron cursos</div>}
+            {showCourses.map((course, index) => (
                 <div key={index}>
                     <Row>
                         <Col xs={2}>
@@ -61,7 +83,7 @@ const CoursesInfo = ({ courses }) => {
 
 function getHorarioStr(horario) {
     let horarioStr = "";
-    let place = "";
+    //let place = "";
 
     const dias = {
         "lunes": "Lunes",
@@ -72,10 +94,10 @@ function getHorarioStr(horario) {
         "sabado": "Sábado",
         "domingo": "Domingo"
     }
-    
+
     for (let i = 0; i < horario.date.length; i++) {
         //console.log(horario.place[i].split(" "));
-        horarioStr += dias[horario.date[i]] + " " + horario.time[i] + " " + horario.place[i].substring(0, horario.place[i].length-18) + "\n";
+        horarioStr += dias[horario.date[i]] + " " + horario.time[i] + " " + horario.place[i].substring(0, horario.place[i].length - 18) + "\n";
     }
 
     return horarioStr;
