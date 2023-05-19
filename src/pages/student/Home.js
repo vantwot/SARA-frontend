@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Tabulado, Calendar } from "../components";
+import { Tabulado, Calendar } from "../../components";
 
 import "styles/home.css";
 
@@ -10,6 +10,19 @@ const Home = () => {
 
     //console.log("Home");
     //console.log(userInfo);
+
+    if (userInfo === null) {
+        return (
+            <div className="home-container">
+                <div className="home-header">
+                    <span className="home-title">¡Bienvenido!</span>
+                    <span className="home-subtitle">
+                        Inicia sesión para ver tu información.
+                    </span>
+                </div>
+            </div>
+        );
+    }
 
     const tabulado = userInfo.tabulado;
     const courses = getCourses(tabulado.courses);

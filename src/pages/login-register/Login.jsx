@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "./logreg.css";
+import "../../styles/logreg.css";
 import univalle from "./Univalle.svg.png";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 
 const Login = (props) => {
+  const [text, setText] = useState("Iniciar sesión");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,6 +20,7 @@ const handleSubmit = async (e) => {
     return;
   }
   try {
+    setText("Ingresando");
     const requestOptions = {
       mode: "cors",
       method: "POST",
@@ -47,7 +49,7 @@ const handleSubmit = async (e) => {
       user_id: decoded.user_id,
     };
     
-    navigate("home/", {state:userInfo});
+    navigate("/estudiante/", {state:userInfo});
 
   } catch (error) {
     console.log(error);
@@ -147,7 +149,7 @@ const handleSubmit = async (e) => {
               </div>
               <div className="input-group mb-3">
                 <button className="btn btn-lg btn-danger w-100 fs-6" type="submit">
-                  Iniciar
+                  {text}
                 </button>
               </div>
             </div>

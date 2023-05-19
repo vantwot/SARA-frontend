@@ -1,5 +1,6 @@
 import React from "react";
 import { Header } from "./";
+import { Outlet } from "react-router";
 
 const Layout = ({ children, categories }) => {
 
@@ -8,7 +9,8 @@ const Layout = ({ children, categories }) => {
             <Header
                 categories={categories}
              />
-            {children}
+            {/* {children} */}
+            <Outlet />
         </>
     )
 }

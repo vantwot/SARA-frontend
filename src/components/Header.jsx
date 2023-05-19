@@ -19,7 +19,7 @@ const Header = ({ categories }) => {
 
                 <div className="right">
                     {categories.map((category) => (
-                        <Link key={category.slug} href={`/category/${category.slug}`} className="link">
+                        <Link key={category.slug} to={`/${category.slug}`} className="link" target="_blank">
                             <span className="header-category">
                                 {category.name}
                             </span>
