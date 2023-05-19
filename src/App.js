@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Layout } from "./components";
-import Home from "./pages/Home";
+import { Home, Matricula } from "./pages/student/";
 import Profesor from "./pages/Profesor";
 import Recovery from "./pages/login-register/recoverpass.jsx"
 
@@ -17,7 +17,7 @@ function App() {
   //   setCurrentForm(formName);
   // }
 
-  const categories = [{ name: "Matricular", slug: "matricula" }, { name: "Tabulados", slug: "tabulados" }, { name: "Perfil", slug: "profile" }]
+  const categories = [{ name: "Matricular", slug: "estudiante/matricula" }, { name: "Tabulados", slug: "estudiante/tabulados" }, { name: "Perfil", slug: "profile" }]
   const categoriesProfe = [{ name: "Perfil", slug: "profile" }]
 
   return (
@@ -29,7 +29,12 @@ function App() {
       {/* <Navbar /> */}
       <Routes>
         <Route path='/' exact element={<Login />} />
-        <Route path='/home' exact element={<Layout categories={categories}> <Home /> </Layout>} />
+        <Route path='estudiante' element={<Layout categories={categories}> </Layout>}>
+          <Route index element={<Home />} />
+          <Route path='home' element={<Home />} />
+          <Route path='matricula' element={<Matricula />} />
+        </Route>
+        {/* <Route path='/home' exact element={<Layout categories={categories}> <Home /> </Layout>} /> */}
         <Route path='/profile' exact element={<Profile />} />
         <Route path='/statistics' exact element={<Statistics />} />
         <Route path='/recover' exact element={<Recovery />} />

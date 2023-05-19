@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./logreg.css";
+import "../../styles/logreg.css";
 import univalle from "./Univalle.svg.png";
 
 const Recovery = (props) => {

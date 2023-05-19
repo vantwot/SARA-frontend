@@ -1,59 +1,4 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { Tabulado, Calendar } from "../components";
-
-import "styles/home.css";
-
-const Home = () => {
-
-    const userInfo = useLocation().state;
-
-    //console.log("Home");
-    //console.log(userInfo);
-
-    const tabulado = userInfo.tabulado;
-    const courses = getCourses(tabulado.courses);
-
-    const appointments = getDates(courses);
-   // console.log(appointments);
-
-    return (
-
-        <div className="home-container background">
-
-            <div className="home-header">
-                <span className="home-title">¡Bienvenido {userInfo.name}!</span>
-                <span className="home-subtitle">
-                    Código de estudiante: {userInfo.username}<br></br>
-                    Programa: {userInfo.program}
-                    </span>
-            </div>
-
-
-            {/* </div> */}
-
-
-            <div className="home-right">
-                <span className="home-description">
-                    Tu horario
-                </span>
-                <Calendar appointments={appointments}/>
-            </div>
-
-            <div className="home-left">
-                <div>
-                    <span className="home-description">Semestre actual: {tabulado.semester}</span>
-                    <div>
-                        <Tabulado courses={courses}/>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const getDates = (courses) => {
+export const getDates = (courses) => {
     let appointments = [];
     let appointment = {};
     let appointment_last_week = {};
@@ -104,7 +49,7 @@ const getDates = (courses) => {
     return appointments;
 }
 
-const getCourses = (courses) => {
+export const getCourses = (courses) => {
     let currentCourse = {};
     var coursesList = [];
     for (let i = 0; i < courses.length; i+=2) {
@@ -114,5 +59,3 @@ const getCourses = (courses) => {
     }
     return coursesList;
 }
-
-export default Home;
