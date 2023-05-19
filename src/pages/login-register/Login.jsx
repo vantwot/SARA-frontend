@@ -4,59 +4,74 @@ import univalle from "./Univalle.svg.png";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-
 const Login = (props) => {
   const [text, setText] = useState("Iniciar sesión");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-// si el usuario esta registrado status codigo 200 y enviarlo al dashboard
-// si el usuario no esta registrado status codigo diferente de 200 y mostrar mensaje de error
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!username || !password) {
-    setError("Todos los campos son obligatorios");
-    return;
-  }
-  try {
-    setText("Ingresando");
-    const requestOptions = {
-      mode: "cors",
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    };
-
-    const response = await fetch('https://saraendpoint.azurewebsites.net/login/', requestOptions);
-    if (!response.ok) {
-      throw new Error('Error en la solicitud');
+  // si el usuario esta registrado status codigo 200 y enviarlo al dashboard
+  // si el usuario no esta registrado status codigo diferente de 200 y mostrar mensaje de error
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      setError("Todos los campos son obligatorios");
+      return;
     }
-    const data = await response.json();
-    
-    const token = data.access;
-    const decoded = jwt_decode(token);
+    try {
+      const requestOptions = {
+        mode: "cors",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      };
 
-    const userInfo = {
-      name: decoded.name,
-      last_name: decoded.last_name,
-      program: decoded.program,
-      tabulado: decoded.tabulado,
-      username: decoded.username,
-      user_id: decoded.user_id,
-    };
-    
-    navigate("/estudiante/", {state:userInfo});
+      const response = await fetch(
+        "https://saraendpoint.azurewebsites.net/login/",
+        requestOptions
+      );
+      if (!response.ok) {
+        throw new Error("Error en la solicitud");
+      }
+      const data = await response.json();
 
-  } catch (error) {
+      const token = data.access;
+      const decoded = jwt_decode(token);
+
+      const userInfo = {
+        name: decoded.name,
+        last_name: decoded.last_name,
+        program: decoded.program,
+        tabulado: decoded.tabulado,
+        username: decoded.username,
+        user_id: decoded.user_id,
+        role: decoded.role,
+        asignaturas: decoded.asignaturas,
+      };
+      console.log(decoded);
+
+      // switch que redirecciona dependiendo del rol del usuario
+      switch (userInfo.role) {
+        case "estudiante":
+          navigate("home/", { state: userInfo });
+          break;
+        case "profesor":
+          navigate("profesor/", { state: userInfo });
+          break;
+        default:
+          break;
+      }
+
+      // navigate("home/", {state:userInfo});
+    } catch (error) {
+      console.log(error);
+      setError("Ha ocurrido un error al iniciar sesión");
+    }
     console.log(error);
-    setError("Ha ocurrido un error al iniciar sesión");
-  }
-  console.log(error);
-};
+  };
 
   return (
     <div className="background">
@@ -72,79 +87,88 @@ const handleSubmit = async (e) => {
       <link rel="stylesheet" href="style.css" />
       {/*--------------------- Main Container ------------------------*/}
       <form onSubmit={handleSubmit}>
-      <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        {/*--------------------- Login Container ------------------------*/}
-        <div className="row border rounded-5 p-3 bg-white shadow box-area" >
-          {/*------------------------- Left Box ---------------------------*/}
-          <div
-            className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-            style={{ background: "#ffffff" }}
-          >
-            <div className="featured-image mb-3">
-              <img
-                src={univalle}
-                className="img-fluid"
-                style={{ width: 250 }}
-                alt=""
-              />
+        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+          {/*--------------------- Login Container ------------------------*/}
+          <div className="row border rounded-5 p-3 bg-white shadow box-area">
+            {/*------------------------- Left Box ---------------------------*/}
+            <div
+              className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
+              style={{ background: "#ffffff" }}
+            >
+              <div className="featured-image mb-3">
+                <img
+                  src={univalle}
+                  className="img-fluid"
+                  style={{ width: 250 }}
+                  alt=""
+                />
+              </div>
+              <label
+                className="text-red fs-2"
+                style={{
+                  fontFamily: '"Courier New", Courier, monospace',
+                  fontWeight: 600,
+                }}
+              >
+                Bienvenido
+              </label>
+              <small
+                className="text-red text-wrap text-center"
+                style={{
+                  width: "17rem",
+                  fontFamily: '"Courier New", Courier, monospace',
+                }}
+              >
+                Recuerda si estas aqui eres de lo mejor por eso perteneces a la
+                mejor
+              </small>
             </div>
-            <label
-              className="text-red fs-2"
-              style={{
-                fontFamily: '"Courier New", Courier, monospace',
-                fontWeight: 600,
-              }}
-            >
-              Bienvenido
-            </label>
-            <small
-              className="text-red text-wrap text-center"
-              style={{
-                width: "17rem",
-                fontFamily: '"Courier New", Courier, monospace',
-              }}
-            >
-              Recuerda si estas aqui eres de lo mejor por eso perteneces a la
-              mejor
-            </small>
-          </div>
-          {/*------------------ ------ Right Box --------------------------*/}
-          <div className="col-md-6 right-box">
-            <div className="row align-items-center">
-              <div className="header-text mb-4">
-                <h2>Sistema Avanzado de Registro Academico</h2>
-                <p>Estamos felices que estes de vuelta</p>
-              </div>
-              <div className="input-group mb-3">
-                <input
-                  //pattern="[0-9]*"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  id="code"
-                  name="code"
-                  type="code"
-                  className="form-control form-control-lg bg-light fs-6"
-                  placeholder="Codigo de identificacion"
-                />
-              </div>
-              <div className="input-group mb-1">
-                <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  id="password"
-                  name="password"
-                  type="password"
-                  className="form-control form-control-lg bg-light fs-6"
-                  placeholder="Contraseña"
-                />
-              </div>
-              <div className="input-group mb-5 d-flex justify-content-between">
-                <div className="forgot">
-                  <small>
-                    <a href="/recover" className="link-primary">
-                      Recuperar contraseña
-                    </a>
-                  </small>
+            {/*------------------ ------ Right Box --------------------------*/}
+            <div className="col-md-6 right-box">
+              <div className="row align-items-center">
+                <div className="header-text mb-4">
+                  <h2>Sistema Avanzado de Registro Academico</h2>
+                  <p>Estamos felices que estes de vuelta</p>
+                </div>
+                <div className="input-group mb-3">
+                  <input
+                    //pattern="[0-9]*"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    id="code"
+                    name="code"
+                    type="code"
+                    className="form-control form-control-lg bg-light fs-6"
+                    placeholder="Codigo de identificacion"
+                  />
+                </div>
+                <div className="input-group mb-1">
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    id="password"
+                    name="password"
+                    type="password"
+                    className="form-control form-control-lg bg-light fs-6"
+                    placeholder="Contraseña"
+                  />
+                </div>
+                <div className="input-group mb-5 d-flex justify-content-between">
+                  <div className="forgot">
+                    <small>
+                      <a href="/recover" className="link-primary">
+                        Recuperar contraseña
+                      </a>
+                    </small>
+                  </div>
+                </div>
+                <div className="input-group mb-3">
+                  <button
+                    className="btn btn-lg btn-danger w-100 fs-6"
+                    type="submit"
+                  >
+                    Iniciar
+                  </button>
                 </div>
               </div>
               <div className="input-group mb-3">
@@ -155,7 +179,6 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-      </div>
       </form>
     </div>
   );
