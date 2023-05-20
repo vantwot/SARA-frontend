@@ -13,7 +13,7 @@ const Layout = ({ children, categories }) => {
             <Header
                 categories={categories}
              />
-            {/* {children} */}
+            {children}
             <Outlet />
         </>
     )

@@ -6,9 +6,11 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Layout } from "./components";
-import { Home, Matricula } from "./pages/student/";
+import {Matricula } from "./pages/student/";
+import HomeEstudiante from "./pages/student/HomeEstudiante";
 import Profesor from "./pages/Profesor";
 import Recovery from "./pages/login-register/recoverpass.jsx"
+import HomeProfesor from "./pages/HomeProfesor";
 
 function App() {
   // const [currentForm, setCurrentForm] = useState('login')//useState('page') or useState('login')
@@ -30,11 +32,11 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Login />} />
         <Route path='estudiante' element={<Layout categories={categories}> </Layout>}>
-          <Route index element={<Home />} />
-          <Route path='home' element={<Home />} />
+          <Route index element={<HomeEstudiante />} />
+          <Route path='home' element={<HomeEstudiante />} />
           <Route path='matricula' element={<Matricula />} />
         </Route>
-        {/* <Route path='/home' exact element={<Layout categories={categories}> <Home /> </Layout>} /> */}
+        <Route path='/home' exact element={<Layout categories={categories}> <HomeProfesor /> </Layout>} /> 
         <Route path='/profile' exact element={<Profile />} />
         <Route path='/statistics' exact element={<Statistics />} />
         <Route path='/recover' exact element={<Recovery />} />

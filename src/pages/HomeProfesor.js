@@ -1,34 +1,34 @@
 import React from "react";
-import { RegistroNotas, Calendar } from "../components";
 import { useLocation } from "react-router-dom";
+import { Tabulado, Calendar } from "../components";
 
 import "styles/home.css";
 
+const HomeProfesor = () => {
 
+    const userInfo = useLocation().state;
 
-const Profesor = () => {
+    //console.log("Home");
+    //console.log(userInfo);
 
-    const profeInfo = useLocation().state;
-    // console.log("profeInfo", profeInfo);
-    // const asignaturas = profeInfo.asignaturas;
+    const tabulado = userInfo.tabulado;
+    const courses = getCourses(tabulado.courses);
 
-    const courses = profeInfo.asignaturas;
-    // const courses = getCourses(tabulado.courses);
     const appointments = getDates(courses);
+   // console.log(appointments);
 
     return (
-        // <div class="wrap">
-        //     <div class="rights top">XD</div>
-        //     <div class="lefts">DD</div>
-        //     <div class="rights bot">AD</div>
-        // </div>
 
         <div className="home-container background">
 
             <div className="home-header">
-                <span className="home-title">¡Bienvenido Geideran!</span>
+                <span className="home-title">¡Bienvenido {userInfo.name}!</span>
             </div>
-            
+
+
+            {/* </div> */}
+
+
             <div className="home-right">
                 <span className="home-description">
                     Tu horario
@@ -37,9 +37,14 @@ const Profesor = () => {
             </div>
 
             <div className="home-left">
-                <RegistroNotas />
-            </div>
+                <div>
+                    <span className="home-description">Semestre actual: {tabulado.semester}</span>
+                    <div>
+                        <Tabulado courses={courses}/>
+                    </div>
 
+                </div>
+            </div>
         </div>
     );
 };
@@ -95,4 +100,15 @@ const getDates = (courses) => {
     return appointments;
 }
 
-export default Profesor;
+const getCourses = (courses) => {
+    let currentCourse = {};
+    var coursesList = [];
+    for (let i = 0; i < courses.length; i+=2) {
+        currentCourse = courses[i];
+        currentCourse.grade = courses[i+1];
+        coursesList.push(currentCourse);
+    }
+    return coursesList;
+}
+
+export default HomeProfesor;
