@@ -5,7 +5,7 @@ import { getCourses, getDates } from "../../utils/extras";
 
 import "styles/home.css";
 
-const Home = () => {
+const HomeEstudiante = () => {
 
     const userInfo = useLocation().state;
 
@@ -68,4 +68,4 @@ const Home = () => {
 };
 
 
-export default Home;
+export default HomeEstudiante;
