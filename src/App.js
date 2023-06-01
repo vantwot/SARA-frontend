@@ -6,8 +6,7 @@ import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-rou
 import Profile from "./pages/profile";
 import Statistics from "./pages/statistics";
 import { Layout } from "./components";
-import {Matricula } from "./pages/student/";
-import HomeEstudiante from "./pages/student/HomeEstudiante";
+import { HomeEstudiante, Matricula, Tabulados } from "./pages/student/";
 import Profesor from "./pages/Profesor";
 import Recovery from "./pages/login-register/recoverpass.jsx"
 import HomeProfesor from "./pages/HomeProfesor";
@@ -35,12 +34,13 @@ function App() {
           <Route index element={<HomeEstudiante />} />
           <Route path='home' element={<HomeEstudiante />} />
           <Route path='matricula' element={<Matricula />} />
+          <Route path='tabulados' element={<Tabulados />} />
         </Route>
         <Route path='/home' exact element={<Layout categories={categories}> <HomeProfesor /> </Layout>} /> 
         <Route path='/profile' exact element={<Profile />} />
         <Route path='/statistics' exact element={<Statistics />} />
         <Route path='/recover' exact element={<Recovery />} />
-        <Route path='/profesor' exact element={<Layout categories={categoriesProfe}> <Profesor /> </Layout>} />
+        <Route path='/profesor' exact element={<Layout categories={categoriesProfe}> <Profesor  /> </Layout>} />
       </Routes>
     </>
 

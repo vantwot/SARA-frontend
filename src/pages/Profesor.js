@@ -26,7 +26,7 @@ const Profesor = () => {
         <div className="home-container background">
 
             <div className="home-header">
-                <span className="home-title">¡Bienvenido Geideran!</span>
+                <span className="home-title">¡Bienvenid@ {profeInfo.name}!</span>
             </div>
             
             <div className="home-right">
