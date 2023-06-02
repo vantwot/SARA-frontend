@@ -74,7 +74,8 @@ const Login = (props) => {
   };
 
   return (
-    <div className="background">
+    <center>
+    <div className="center">
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -173,6 +174,7 @@ const Login = (props) => {
         </div >
       </form >
     </div >
+    </center>
   );
 };
 
