@@ -10,8 +10,8 @@ import Recovery from "./pages/login-register/recoverpass.jsx"
 import HomeProfesor from "./pages/HomeProfesor";
 
 function App() {
-  const categories = [{ name: "Cancelaciones", slug: "estudiante/cancelaciones" }, { name: "Matricular", slug: "estudiante/matricula" }, { name: "Tabulados", slug: "estudiante/tabulados" }, { name: "Perfil", slug: "profile" }]
-  const categoriesProfe = [{ name: "Perfil", slug: "profile" }]
+  const categories = [{ name: "Cancelaciones", slug: "estudiante/cancelaciones" }, { name: "Matricular", slug: "estudiante/matricula" }, { name: "Tabulados", slug: "estudiante/tabulados" }, { name: "Perfil", slug: "profile" }, {name: "Cerrar Sesión", slug: ""}]
+  const categoriesProfe = [{ name: "Perfil", slug: "profile" }, {name: "Cerrar Sesión", slug: ""}]
 
   return (
     <>
