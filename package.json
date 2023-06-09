@@ -24,13 +24,18 @@
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "sonarqube-scanner": "^2.7.0"
+  },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --watchAll --coverage --collectCoverageFrom='./src/test/a.test.js'",
+    "eject": "react-scripts eject",
+    "sonar": "sonar-scanner"
   },
   "eslintConfig": {
     "extends": [
