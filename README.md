@@ -23,4 +23,4 @@ estudiantes sin importar los prerrequisitos de las asignaturas
 y cancelar las mismas. Estas son las funciones primordiales
 que tendra esta primera version del software este mismo sera
 escalable hasta tener por totalidad todas las funciones del
-SIRA y mejorar la experiencia de usuario.
+SIRA y mejorar la experiencia de usuario. 
