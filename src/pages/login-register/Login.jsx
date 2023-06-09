@@ -3,8 +3,6 @@ import "../../styles/logreg.css";
 import univalle from "./Univalle.svg.png";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Login = (props) => {
   const [text, setText] = useState("Iniciar sesión");
@@ -70,9 +68,7 @@ const Login = (props) => {
       // navigate("home/", {state:userInfo});
     } catch (error) {
       console.log(error);
-      toast.error("Ha ocurrido un error al iniciar sesión")
       setError("Ha ocurrido un error al iniciar sesión");
-      setText("Iniciar Sesión");
     }
     console.log(error);
   };
@@ -177,8 +173,6 @@ const Login = (props) => {
           </div >
         </div >
       </form >
-      <div id="login-error-message" />
-      <ToastContainer />
     </div >
     </center>
   );
