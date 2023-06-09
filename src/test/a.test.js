@@ -4,7 +4,6 @@ import { MemoryRouter } from 'react-router-dom';
 import Login from '../pages/login-register/Login.jsx';
 
 
-
 test('submit form should navigate to the student dashboard on successful login', () => {
   const { getByPlaceholderText, getByText, getByTestId } = render(
     <MemoryRouter>
@@ -20,8 +19,6 @@ test('submit form should navigate to the student dashboard on successful login',
   fireEvent.change(passwordInput, { target: { value: 'kpoeta2015' } });
 
   fireEvent.click(submitButton);
-
-
 
 });
 
